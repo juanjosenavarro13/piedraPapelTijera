@@ -1,0 +1,62 @@
+<div
+  class="row align-content-center text-center border py-5"
+  *ngIf="!manosSeleccionadas; else elseMano"
+>
+  <div class="col-6">
+    <div class="col-12">
+      <h3 class="display-3">{{ jugadores[0].nombre }}</h3>
+      <img src="{{ manos[0].img }}" />
+    </div>
+    <div class="col-12 mt-3">
+      <div class="btn-group">
+        <a (click)="seleccionar(0, 1)" class="btn btn-info text-white"
+          >Piedra</a
+        >
+        <a (click)="seleccionar(0, 2)" class="btn btn-danger">Papel</a>
+        <a (click)="seleccionar(0, 3)" class="btn btn-success">Tijeras</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-6">
+    <div class="col-12">
+      <h3 class="display-3">{{ jugadores[1].nombre }}</h3>
+      <img src="{{ manos[0].img }}" />
+    </div>
+    <div class="col-12 mt-3">
+      <div class="btn-group">
+        <a (click)="seleccionar(1, 1)" class="btn btn-info text-white"
+          >Piedra</a
+        >
+        <a (click)="seleccionar(1, 2)" class="btn btn-danger">Papel</a>
+        <a (click)="seleccionar(1, 3)" class="btn btn-success">Tijeras</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #elseMano>
+  <div
+  class="row align-content-center text-center border py-5"
+>
+  <div class="col-6 py-2" [ngClass]="{'border border-success': jugadores[0].ganador === true}">
+    <div class="col-12">
+      <h3 class="display-3" [ngClass]="{'text-success': jugadores[0].ganador === true}">{{ jugadores[0].nombre }}</h3>
+      <img src="{{ manos[jugadores[0].seleccion].img }}" />
+    </div>
+  </div>
+
+  <div class="col-6 py-2" [ngClass]="{'border border-success': jugadores[1].ganador === true}">
+    <div class="col-12">
+      <h3 class="display-3" [ngClass]="{'text-success': jugadores[1].ganador === true}">{{ jugadores[1].nombre }}</h3>
+      <img src="{{ manos[jugadores[1].seleccion].img }}" />
+    </div>
+  </div>
+  <div class="col-12" *ngFor="let jugador of jugadores">
+    <div *ngIf="jugador.ganador">El ganador es: {{jugador.nombre}}</div>
+  </div>
+  <div class="col-12 mt-2">
+    <button class="btn btn-dark" (click)="reiniciar()" >Volver a jugar</button>
+  </div>
+</div>
+</ng-template>
