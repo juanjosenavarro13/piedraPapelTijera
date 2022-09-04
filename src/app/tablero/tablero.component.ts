@@ -69,7 +69,9 @@ export class TableroComponent implements OnInit {
   reiniciar(){
     this.manosSeleccionadas = false;
     this.jugadores[0].seleccion = 0;
+    this.jugadores[0].ganador = false;
     this.jugadores[1].seleccion = 0;
+    this.jugadores[1].ganador = false;
   }
 
 }
