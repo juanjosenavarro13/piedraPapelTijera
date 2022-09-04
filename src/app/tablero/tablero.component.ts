@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -23,6 +24,10 @@ export class TableroComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.getLocalstorage().then((value:any) =>{
+      this.jugadores[0].nombre = value[0].nombre;
+      this.jugadores[1].nombre = value[1].nombre;
+    })
   }
 
   seleccionar(jugador:number ,seleccionado:number){
@@ -72,6 +77,26 @@ export class TableroComponent implements OnInit {
     this.jugadores[0].ganador = false;
     this.jugadores[1].seleccion = 0;
     this.jugadores[1].ganador = false;
+  }
+
+  cambiarNombre(form:any){
+    if(form.value.jugador1 !== null){
+      this.jugadores[0].nombre = form.value.jugador1
+    }
+    if(form.value.jugador2 !== null){
+      this.jugadores[1].nombre = form.value.jugador2
+    }
+    localStorage.setItem(environment.nameApp, JSON.stringify(this.jugadores));
+    form.resetForm();
+  }
+
+  private getLocalstorage(){
+    return new Promise((resolve, reject)=>{
+      const local = localStorage.getItem(environment.nameApp)
+      if(local && local !== null && local !== ''){
+        resolve(JSON.parse(local))
+      }
+    })
   }
 
 }
