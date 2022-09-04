@@ -1,14 +1,14 @@
 <form #formNombres="ngForm" (ngSubmit)="cambiarNombre(formNombres)" class="row align-content-center text-center border py-5">
   <div class="input-group mb-3">
     <span class="input-group-text">Jugador 1</span>
-    <input type="text" class="form-control" placeholder="{{ jugadores[0].nombre }}" ngModel name="jugador1" #jugador1="ngModel">
+    <input type="text" class="form-control" placeholder="{{ jugadores[0].nombre }}" ngModel name="jugador1" #jugador1="ngModel" required>
   </div>
   <div class="input-group mb-3">
     <span class="input-group-text">Jugador 2</span>
-    <input type="text" class="form-control" placeholder="{{ jugadores[1].nombre }}" ngModel name="jugador2" #jugador2="ngModel">
+    <input type="text" class="form-control" placeholder="{{ jugadores[1].nombre }}" ngModel name="jugador2" #jugador2="ngModel" required>
   </div>
   <div class="col-12">
-    <button type="submit" class="btn btn-outline-dark">Guardar</button>
+    <button type="submit" class="btn btn-outline-dark" [disabled]="formNombres.invalid">Guardar</button>
   </div>
 </form>
 

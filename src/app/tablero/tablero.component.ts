@@ -80,10 +80,10 @@ export class TableroComponent implements OnInit {
   }
 
   cambiarNombre(form:any){
-    if(form.value.jugador1 !== null){
+    if(form.value.jugador1 !== null && form.value.jugador1 !== ''){
       this.jugadores[0].nombre = form.value.jugador1
     }
-    if(form.value.jugador2 !== null){
+    if(form.value.jugador2 !== null && form.value.jugador2 !== ''){
       this.jugadores[1].nombre = form.value.jugador2
     }
     localStorage.setItem(environment.nameApp, JSON.stringify(this.jugadores));
